@@ -115,7 +115,7 @@ defmodule Shopifex.Plug do
       :hmac,
       :sha256,
       Application.fetch_env!(:shopifex, :secret),
-      conn.assigns[:raw_body]
+      conn.private[:raw_body] || conn.assigns[:raw_body]
     )
     |> Base.encode64()
     |> String.downcase()
